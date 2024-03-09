@@ -57,6 +57,7 @@ fclean:	clean
 
 re:	clean all
 
+unit_tests:	CFLAGS += $(TFLAGS)
 unit_tests:	$(TOBJ) $(OBJ)
 	$(CC) -o $@ $(OBJECTS) $(CFLAGS)
 
