@@ -1,0 +1,7 @@
+*.o
+tmp/
+*.gc*
+linked
+liblinked.a
+unit_tests
+!unit_tests/
