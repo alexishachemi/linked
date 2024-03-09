@@ -6,7 +6,12 @@
 */
 
 #include <criterion/criterion.h>
-#include <list.h>
+#include "list.h"
+
+static void *allocate_int(void)
+{
+    return malloc(sizeof(int));
+}
 
 Test(list_create, list_alloc)
 {
@@ -28,11 +33,6 @@ Test(alloc_node, node_alloc_no_allocator)
     cr_assert_null(node->prev);
     cr_assert_null(node->next);
     free(node);
-}
-
-void *allocate_int(void)
-{
-    return malloc(sizeof(int));
 }
 
 Test(alloc_node, alloc_node_with_allocator)
