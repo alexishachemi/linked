@@ -8,7 +8,7 @@
 #include <stdlib.h>
 #include "list.h"
 
-node_t *alloc_node(allocator_t allocate)
+node_t *node_create(allocator_t allocate)
 {
     node_t *node = NULL;
 
@@ -26,7 +26,7 @@ node_t *alloc_node(allocator_t allocate)
     return node;
 }
 
-list_t *alloc_list(void)
+list_t *list_create(void)
 {
     list_t *list = NULL;
 

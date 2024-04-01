@@ -8,6 +8,7 @@
 #ifndef LIST_H_
     #define LIST_H_
     #include <stdbool.h>
+    #include <unistd.h>
 
 typedef struct list_s list_t;
 typedef struct node_s node_t;
@@ -25,43 +26,48 @@ struct node_s {
 };
 
 typedef void *(*allocator_t)();
-typedef bool (*comparator_t)(void *, void *);
 typedef void (*callback_t)(void *);
 
 // creating
 
-node_t *alloc_node(allocator_t allocate);
-list_t *alloc_list(void);
+node_t *node_create(allocator_t allocate);
+list_t *list_create(void);
 
 // destructing
 
-void free_node(node_t *node, callback_t destroy);
-void free_nodes(node_t *node, callback_t destroy);
-void clear_list(list_t *list, callback_t destroy);
-void free_list(list_t *list, callback_t destroy);
+void node_destroy(node_t *node, callback_t destroy);
+void node_destroy_all(node_t *node, callback_t destroy);
+void list_clear(list_t *list, callback_t destroy);
+void list_destroy(list_t *list, callback_t destroy);
+void list_clear_free(list_t *list);
+void list_destroy_free(list_t *list);
 
 // adding
 
 void *list_add(list_t *list, allocator_t allocate);
 void *list_iinsert(list_t *list, allocator_t allocate, int index);
-void *list_cinsert(list_t *list, allocator_t allocate,
-    comparator_t compare, void *compared);
 
 // removing
 
 void *list_ipop(list_t *list, int index);
-void *list_cpop(list_t *list, comparator_t compare, void *compared);
 bool list_iremove(list_t *list, callback_t destroy, int index);
-bool list_cremove(list_t *list, callback_t destroy,
-    comparator_t compare, void *compared);
+bool list_iremove_free(list_t *list, int index);
 
 // handling
 
 void *list_iget(list_t *list, int index);
-void *list_cget(list_t *list, comparator_t compare, void *compared);
 
 // utilities
 
-void isolate_node(node_t *node);
+void node_isolate(node_t *node);
+void node_print_all(node_t *node, callback_t print);
+void list_print(list_t *list, callback_t print);
+void node_link(node_t *node, ...);
+
+size_t list_size(list_t *list);
+bool list_empty(list_t *list);
+
+void list_set_head(list_t *list, node_t *node);
+void list_set_tail(list_t *list, node_t *node);
 
 #endif /* !LIST_H_ */

@@ -7,35 +7,33 @@
 
 NAME	=	linked
 
-LIB	=	lib$(NAME).a
+LIB		=	lib$(NAME).a
 
 CC		=	gcc
 
-CURRDIR	=	$(shell pwd)
-
-OBJDIR	=	$(CURRDIR)/tmp
-
-OBJECTS	=	$(OBJDIR)/*.o
+TMPDIR	=	tmp
 
 # Sources
 
-SRC		=	$(shell find $(CURRDIR)/src -type f -name '*.c')
+SRC		=	$(shell find src -type f -name '*.c')
 
-OBJ		=	$(SRC:%.c=$(OBJDIR)/%.o)
+OBJ		=	$(SRC:%.c=$(TMPDIR)/%.o)
 
-CFLAGS	+=	-W -Wall -Wextra -I$(CURRDIR)/include
+CFLAGS	+=	-W -Wall -Wextra -Iinclude
 
 # Tests
 
-TSRC	=	$(shell find $(CURRDIR)/tests/unit_tests -type f -name '*.c')
+TNAME	=	unit_tests
 
-TOBJ	=	$(TSRC:%.c=$(OBJDIR)/%.o)
+TSRC	=	$(shell find tests/$(TNAME) -type f -name '*.c')
+
+TOBJ	=	$(TSRC:%.c=$(TMPDIR)/%.o)
 
 MAIN	=	tests/main.c
 
-MOBJ	=	$(MAIN:%.c=$(OBJDIR)/%.o) $(OBJ)
+MOBJ	=	$(MAIN:%.c=$(TMPDIR)/%.o) $(OBJ)
 
-TFLAGS	=	-lcriterion -lgcov --coverage
+TFLAGS	=	-lcriterion -lgcov --coverage -Itests/include
 
 VFLAGS	=	--trace-children=yes --track-origins=yes \
 			--leak-check=full --show-leak-kinds=all
@@ -43,34 +41,35 @@ VFLAGS	=	--trace-children=yes --track-origins=yes \
 # Rules
 
 $(LIB):	$(OBJ)
-	ar rc $(LIB) $(OBJECTS)
+	ar rc $(LIB) $(OBJ)
 
 all:	$(LIB)
 
 clean:
-	rm -rf $(OBJDIR)
+	rm -rf $(TMPDIR)
 	rm -f $(shell find . -type f -name '*.gc*')
 
 fclean:	clean
 	rm -f $(LIB)
 	rm -f $(NAME)
+	rm -f $(TNAME)
 
 re:	clean all
 
-unit_tests:	CFLAGS += $(TFLAGS)
-unit_tests:	$(TOBJ) $(OBJ)
-	$(CC) -o $@ $(OBJECTS) $(CFLAGS)
+$(TNAME):	CFLAGS += $(TFLAGS)
+$(TNAME):	$(TOBJ) $(OBJ)
+	$(CC) -o $@ $^ $(CFLAGS)
 
-tests_run:	unit_tests
-	./unit_tests
+tests_run:	$(TNAME)
+	./$(TNAME)
 
 $(NAME):	$(MOBJ)
-	$(CC) -o $@ $(OBJECTS) $(CFLAGS)
+	$(CC) -o $@ $^ $(CFLAGS)
 
 main:	$(NAME)
 
-$(OBJDIR)/%.o:	%.c
-	mkdir -p $(OBJDIR)
-	$(CC) -o $(OBJDIR)/$(@F) -c $< $(CFLAGS)
+$(TMPDIR)/%.o:	%.c
+	@mkdir -p $(@D)
+	gcc -o $@ -c $< $(CFLAGS) $(LDFLAGS)
 
 .PHONY: all clean fclean re tests_run main

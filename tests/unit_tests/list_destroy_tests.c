@@ -6,105 +6,95 @@
 */
 
 #include <criterion/criterion.h>
+#include "test_utils.h"
 #include "list.h"
 
-static void destroy_int(void *data)
+Test(node_destroy, node_destroy_no_destroy)
 {
-    free(data);
-}
+    node_t *node = node_create(NULL);
 
-static void *allocate_int(void)
-{
-    return malloc(sizeof(int));
-}
-
-Test(free_node, free_node_no_destroy)
-{
-    node_t *node = alloc_node(NULL);
-
-    free_node(node, NULL);
+    node_destroy(node, NULL);
     cr_assert(1);
 }
 
-
-Test(free_node, free_node_with_destroy)
+Test(node_destroy, node_destroy_with_destroy)
 {
-    node_t *node = alloc_node(allocate_int);
+    node_t *node = node_create(allocate_int);
 
-    free_node(node, destroy_int);
+    node_destroy(node, destroy_int);
     cr_assert(1);
 }
 
-Test(free_node, free_node_null)
+Test(node_destroy, node_destroy_null)
 {
-    free_node(NULL, destroy_int);
+    node_destroy(NULL, destroy_int);
     cr_assert(1);
 }
 
-Test(free_nodes, free_nodes_no_destroy)
+Test(node_destroy_all, node_destroy_all_no_destroy)
 {
-    node_t *node = alloc_node(NULL);
+    node_t *node = node_create(NULL);
 
-    free_nodes(node, NULL);
+    node_destroy_all(node, NULL);
     cr_assert(1);
 }
 
-Test(free_nodes, free_nodes_with_destroy)
+Test(node_destroy_all, node_destroy_all_with_destroy)
 {
-    node_t *node = alloc_node(allocate_int);
+    node_t *node = node_create(allocate_int);
 
-    free_nodes(node, destroy_int);
+    node_destroy_all(node, destroy_int);
     cr_assert(1);
 }
 
-Test(free_nodes, free_nodes_null)
+Test(node_destroy_all, node_destroy_all_null)
 {
-    free_nodes(NULL, destroy_int);
+    node_destroy_all(NULL, destroy_int);
     cr_assert(1);
 }
 
-Test(clear_list, clear_list_no_destroy)
+Test(list_clear, list_clear_no_destroy)
 {
     list_t list = {NULL, NULL};
-    node_t *node = alloc_node(NULL);
+    node_t *node = node_create(NULL);
 
     list.head = node;
     list.tail = node;
-    clear_list(&list, NULL);
+    list_clear(&list, NULL);
     cr_assert_null(list.head);
     cr_assert_null(list.tail);
 }
 
-Test(clear_list, clear_list_with_destroy)
+Test(list_clear, list_clear_with_destroy)
 {
     list_t list = {NULL, NULL};
-    node_t *node = alloc_node(allocate_int);
+    node_t *node = node_create(allocate_int);
 
     list.head = node;
     list.tail = node;
-    clear_list(&list, destroy_int);
+    list_clear(&list, destroy_int);
     cr_assert_null(list.head);
     cr_assert_null(list.tail);
 }
 
-Test(free_list, free_list_no_destroy)
+Test(list_destroy, list_destroy_no_destroy)
 {
-    list_t *list = alloc_list();
+    list_t *list = list_create();
 
-    free_list(list, NULL);
+    list_destroy(list, NULL);
     cr_assert(1);
 }
 
-Test(free_list, free_list_with_destroy)
+Test(list_destroy, list_destroy_with_destroy)
 {
-    list_t *list = alloc_list();
+    list_t *list = list_create();
 
-    free_list(list, destroy_int);
+    list_destroy(list, destroy_int);
     cr_assert(1);
 }
 
-Test(free_list, free_list_null)
+Test(list_destroy, list_destroy_null)
 {
-    free_list(NULL, destroy_int);
+    list_destroy(NULL, destroy_int);
     cr_assert(1);
 }
