@@ -31,9 +31,14 @@ list_t *list_create(void)
     list_t *list = NULL;
 
     list = malloc(sizeof(list_t));
+    list_init(list);
+    return list;
+}
+
+void list_init(list_t *list)
+{
     if (!list)
-        return NULL;
+        return;
     list->head = NULL;
     list->tail = NULL;
-    return list;
 }

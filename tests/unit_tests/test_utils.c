@@ -27,6 +27,16 @@ void print_int(void *data)
     printf("%d\n", *(int*)data);
 }
 
+void sum_int(void *acc, void *data)
+{
+    int *acc_int = (int *)acc;
+    int *data_int = (int *)data;
+
+    if (!acc || !data)
+        return;
+    *acc_int += *data_int;
+}
+
 bool int_eq(void *data, void *data2)
 {
     if (!data || !data2)

@@ -41,3 +41,13 @@ void *list_iget(list_t *list, int index)
         return get_from_back(list->tail, abs(index) - 1);
     return get_from_front(list->head, index >= size ? size - 1 : index);
 }
+
+bool list_apply(list_t *list, applicator_t apply, void *accumulator)
+{
+    if (!list || !apply || !accumulator)
+        return false;
+    for (node_t *i = list->head; i; i = i->next) {
+        apply(accumulator, i->data);
+    }
+    return true;
+}

@@ -27,11 +27,13 @@ struct node_s {
 
 typedef void *(*allocator_t)();
 typedef void (*callback_t)(void *);
+typedef void (*applicator_t)(void *, void *);
 
 // creating
 
 node_t *node_create(allocator_t allocate);
 list_t *list_create(void);
+void list_init(list_t *list);
 
 // destructing
 
@@ -56,6 +58,7 @@ bool list_iremove_free(list_t *list, int index);
 // handling
 
 void *list_iget(list_t *list, int index);
+bool list_apply(list_t *list, applicator_t apply, void *accumulator);
 
 // utilities
 
