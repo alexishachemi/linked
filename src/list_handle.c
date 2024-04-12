@@ -6,7 +6,7 @@
 */
 
 #include <stdlib.h>
-#include "list.h"
+#include "linked.h"
 
 static void *get_from_front(node_t *node, size_t count)
 {

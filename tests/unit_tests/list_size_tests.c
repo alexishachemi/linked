@@ -6,7 +6,7 @@
 */
 
 #include <criterion/criterion.h>
-#include "list.h"
+#include "linked.h"
 #include "test_utils.h"
 
 Test(list_size, empty_list)

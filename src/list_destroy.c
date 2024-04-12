@@ -6,7 +6,7 @@
 */
 
 #include <stdlib.h>
-#include "list.h"
+#include "linked.h"
 
 void list_clear(list_t *list, callback_t destroy)
 {

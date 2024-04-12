@@ -5,7 +5,7 @@
 ** list_positional_utils
 */
 
-#include "list.h"
+#include "linked.h"
 
 void list_set_head(list_t *list, node_t *node)
 {

@@ -7,7 +7,7 @@
 
 #include <criterion/criterion.h>
 #include "test_utils.h"
-#include "list.h"
+#include "linked.h"
 
 Test(list_remove, remove_index_in_range)
 {

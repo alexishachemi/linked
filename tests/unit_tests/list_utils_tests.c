@@ -7,7 +7,7 @@
 
 #include <criterion/criterion.h>
 #include "test_utils.h"
-#include "list.h"
+#include "linked.h"
 
 Test(node_isolate, node_isolate_null)
 {

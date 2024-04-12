@@ -7,7 +7,7 @@
 
 #include <criterion/criterion.h>
 #include "test_utils.h"
-#include "list.h"
+#include "linked.h"
 
 Test(node_destroy, node_destroy_no_destroy)
 {

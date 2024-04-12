@@ -6,7 +6,7 @@
 */
 
 #include <stdlib.h>
-#include "list.h"
+#include "linked.h"
 
 static void pop_from_front(list_t *list, size_t count, void **data)
 {

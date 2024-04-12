@@ -6,7 +6,7 @@
 */
 #include <stdlib.h>
 #include <stddef.h>
-#include "list.h"
+#include "linked.h"
 
 void *list_add(list_t *list, allocator_t allocate)
 {

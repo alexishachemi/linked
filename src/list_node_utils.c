@@ -6,7 +6,7 @@
 */
 
 #include <stdlib.h>
-#include "list.h"
+#include "linked.h"
 
 void node_destroy(node_t *node, callback_t destroy)
 {
