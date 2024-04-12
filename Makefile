@@ -9,9 +9,15 @@ NAME	=	linked
 
 LIB		=	lib$(NAME).a
 
+INC		=	include/linked.h
+
 CC		=	gcc
 
 TMPDIR	=	tmp
+
+INST_BIN_DIR	=	/usr/local/lib/
+
+INST_INC_DIR	=	/usr/local/include
 
 # Sources
 
@@ -63,6 +69,16 @@ $(LIB):	$(OBJ)
 
 all:	$(LIB)
 
+install:	$(LIB)
+	sudo cp $(LIB) $(INST_BIN_DIR)
+	sudo cp $(INC) $(INST_INC_DIR)
+	sudo ldconfig
+
+uninstall:
+	sudo rm -f $(INST_BIN_DIR)/$(LIB)
+	sudo rm -f $(INST_INC_DIR)/$(INC)
+	sudo ldconfig
+
 clean:
 	rm -rf $(TMPDIR)
 	rm -f $(shell find . -type f -name '*.gc*')
@@ -88,4 +104,4 @@ $(TMPDIR)/%.o:	%.c
 val_tests: unit_tests
 	valgrind $(VFLAGS) ./unit_tests
 
-.PHONY: all clean fclean re tests_run val_tests
+.PHONY: all install uninstall clean fclean re tests_run val_tests
