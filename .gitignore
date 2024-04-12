@@ -5,3 +5,4 @@ linked
 liblinked.a
 unit_tests
 !unit_tests/
+.vscode/
