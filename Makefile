@@ -81,11 +81,6 @@ $(TNAME):	$(TOBJ) $(OBJ)
 tests_run:	$(TNAME)
 	./$(TNAME)
 
-$(NAME):	$(MOBJ)
-	$(CC) -o $@ $^ $(CFLAGS)
-
-main:	$(NAME)
-
 $(TMPDIR)/%.o:	%.c
 	@mkdir -p $(@D)
 	gcc -o $@ -c $< $(CFLAGS) $(LDFLAGS)
@@ -93,4 +88,4 @@ $(TMPDIR)/%.o:	%.c
 val_tests: unit_tests
 	valgrind $(VFLAGS) ./unit_tests
 
-.PHONY: all clean fclean re tests_run main
+.PHONY: all clean fclean re tests_run val_tests
