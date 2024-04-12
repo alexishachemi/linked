@@ -12,6 +12,7 @@ void destroy_int(void *data);
 void *allocate_int(void);
 void print_int(void *data);
 void sum_int(void *acc, void *data);
+void inc_int(void *data);
 bool int_eq(void *data, void *data2);
 bool int_gt(void *data, void *data2);
 bool int_lt(void *data, void *data2);

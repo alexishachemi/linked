@@ -51,3 +51,13 @@ bool list_apply(list_t *list, applicator_t apply, void *accumulator)
     }
     return true;
 }
+
+bool list_map(list_t *list, callback_t map)
+{
+    if (!list || !map)
+        return false;
+    for (node_t *i = list->head; i; i = i->next) {
+        map(i->data);
+    }
+    return true;
+}

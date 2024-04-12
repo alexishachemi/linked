@@ -37,6 +37,13 @@ void sum_int(void *acc, void *data)
     *acc_int += *data_int;
 }
 
+void inc_int(void *data)
+{
+    if (!data)
+        return;
+    (*(int*)data)++;
+}
+
 bool int_eq(void *data, void *data2)
 {
     if (!data || !data2)

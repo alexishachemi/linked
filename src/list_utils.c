@@ -37,7 +37,7 @@ static void print_data(void *data, callback_t print)
         printf("%p", data);
 }
 
-void node_print_all(node_t *node, callback_t print)
+static void node_print_all(node_t *node, callback_t print)
 {
     if (!node)
         return;

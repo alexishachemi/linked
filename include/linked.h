@@ -59,11 +59,11 @@ bool list_iremove_free(list_t *list, int index);
 
 void *list_iget(list_t *list, int index);
 bool list_apply(list_t *list, applicator_t apply, void *accumulator);
+bool list_map(list_t *list, callback_t map);
 
 // utilities
 
 void node_isolate(node_t *node);
-void node_print_all(node_t *node, callback_t print);
 void list_print(list_t *list, callback_t print);
 void node_link(node_t *node, ...);
 

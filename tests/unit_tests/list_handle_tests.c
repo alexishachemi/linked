@@ -163,3 +163,41 @@ Test(list_apply, apply_sum_int_null_list)
     list_apply(NULL, sum_int, &acc);
     cr_assert_eq(acc, 0);
 }
+
+Test(list_map, map_add)
+{
+    list_t *list = list_create();
+    int *data = list_add(list, allocate_int);
+    int *data2 = list_add(list, allocate_int);
+    int *data3 = list_add(list, allocate_int);
+
+    cr_assert_not_null(list);
+    cr_assert_not_null(data);
+    cr_assert_not_null(data2);
+    *data = 1;
+    *data2 = 2;
+    *data3 = 3;
+    list_map(list, inc_int);
+    cr_assert_eq(*data, 2);
+    cr_assert_eq(*data2, 3);
+    cr_assert_eq(*data3, 4);
+    list_map(list, inc_int);
+    cr_assert_eq(*data, 3);
+    cr_assert_eq(*data2, 4);
+    cr_assert_eq(*data3, 5);
+    list_destroy(list, destroy_int);
+}
+
+Test(list_map, map_empty_list)
+{
+    list_t *list = list_create();
+
+    cr_assert_not_null(list);
+    list_map(list, inc_int);
+    list_destroy_free(list);
+}
+
+Test(list_map, map_null_list)
+{
+    list_map(NULL, inc_int);
+}
