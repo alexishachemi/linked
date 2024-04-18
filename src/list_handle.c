@@ -30,7 +30,7 @@ static void *get_from_back(node_t *node, size_t count)
     return NULL;
 }
 
-void *list_iget(list_t *list, int index)
+void *list_at(list_t *list, int index)
 {
     int size = 0;
 

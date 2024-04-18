@@ -25,7 +25,7 @@ Test(list_get, get_index_in_range)
     *data2 = 2;
     *data3 = 3;
     *data4 = 4;
-    data_get = list_iget(list, 2);
+    data_get = list_at(list, 2);
     cr_assert_not_null(data_get);
     cr_assert_eq(data_get, data3);
     list_destroy(list, destroy_int);
@@ -47,7 +47,7 @@ Test(list_get, get_index_out_of_range)
     *data2 = 2;
     *data3 = 3;
     *data4 = 4;
-    data_get = list_iget(list, 12);
+    data_get = list_at(list, 12);
     cr_assert_not_null(data_get);
     cr_assert_eq(data_get, data4);
     list_destroy(list, destroy_int);
@@ -69,7 +69,7 @@ Test(list_get, get_index_negative)
     *data2 = 2;
     *data3 = 3;
     *data4 = 4;
-    data_get = list_iget(list, -2);
+    data_get = list_at(list, -2);
     cr_assert_not_null(data_get);
     cr_assert_eq(data_get, data3);
     list_destroy(list, destroy_int);
@@ -81,7 +81,7 @@ Test(list_get, get_empty_list)
     int *data_get = NULL;
 
     cr_assert_not_null(list);
-    data_get = list_iget(list, 0);
+    data_get = list_at(list, 0);
     cr_assert_null(data_get);
     list_destroy(list, destroy_int);
 }
@@ -100,7 +100,7 @@ Test(list_get, get_first)
     *data = 1;
     *data2 = 2;
     *data3 = 3;
-    data_get = list_iget(list, 0);
+    data_get = list_at(list, 0);
     cr_assert_not_null(data_get);
     cr_assert_eq(data_get, data);
     list_destroy(list, destroy_int);
@@ -120,7 +120,7 @@ Test(list_get, get_last)
     *data = 1;
     *data2 = 2;
     *data3 = 3;
-    data_get = list_iget(list, 2);
+    data_get = list_at(list, 2);
     cr_assert_not_null(data_get);
     cr_assert_eq(data_get, data3);
     list_destroy(list, destroy_int);

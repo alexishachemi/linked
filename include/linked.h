@@ -57,7 +57,7 @@ bool list_iremove_free(list_t *list, int index);
 
 // handling
 
-void *list_iget(list_t *list, int index);
+void *list_at(list_t *list, int index);
 bool list_apply(list_t *list, applicator_t apply, void *accumulator);
 bool list_map(list_t *list, callback_t map);
 
