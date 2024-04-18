@@ -42,6 +42,20 @@ void *list_at(list_t *list, int index)
     return get_from_front(list->head, index >= size ? size - 1 : index);
 }
 
+bool list_move(list_t *from, int at, list_t *to)
+{
+    void *data = NULL;
+
+    if (!from || !to)
+        return false;
+    data = list_at(from, at);
+    if (!data)
+        return false;
+    if (!list_add_ptr(to, data))
+        return false;
+    return list_ipop(from, at);
+}
+
 bool list_apply(list_t *list, applicator_t apply, void *accumulator)
 {
     if (!list || !apply || !accumulator)

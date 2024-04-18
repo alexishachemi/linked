@@ -126,6 +126,90 @@ Test(list_get, get_last)
     list_destroy(list, destroy_int);
 }
 
+Test(list_move, move_index_in_range)
+{
+    list_t *list = list_create();
+    list_t *list2 = list_create();
+    int *data = list_add(list, allocate_int);
+    int *data2 = list_add(list, allocate_int);
+    int *data3 = list_add(list, allocate_int);
+    int *data4 = list_add(list, allocate_int);
+
+    cr_assert_not_null(list);
+    cr_assert_not_null(list2);
+    cr_assert_not_null(data);
+    cr_assert_not_null(data2);
+    *data = 1;
+    *data2 = 2;
+    *data3 = 3;
+    *data4 = 4;
+    cr_assert_eq(list_move(list, 2, list2), true);
+    cr_assert_eq(list_size(list), 3);
+    cr_assert_eq(list_size(list2), 1);
+    cr_assert_eq(*(int *)list_at(list, 0), 1);
+    cr_assert_eq(*(int *)list_at(list, 1), 2);
+    cr_assert_eq(*(int *)list_at(list, 2), 4);
+    cr_assert_eq(*(int *)list_at(list2, 0), 3);
+    list_destroy(list, destroy_int);
+    list_destroy(list2, destroy_int);
+}
+
+Test(list_move, move_index_out_of_range)
+{
+    list_t *list = list_create();
+    list_t *list2 = list_create();
+    int *data = list_add(list, allocate_int);
+    int *data2 = list_add(list, allocate_int);
+    int *data3 = list_add(list, allocate_int);
+    int *data4 = list_add(list, allocate_int);
+
+    cr_assert_not_null(list);
+    cr_assert_not_null(list2);
+    cr_assert_not_null(data);
+    cr_assert_not_null(data2);
+    *data = 1;
+    *data2 = 2;
+    *data3 = 3;
+    *data4 = 4;
+    cr_assert_eq(list_move(list, 12, list2), true);
+    cr_assert_eq(list_size(list), 3);
+    cr_assert_eq(list_size(list2), 1);
+    cr_assert_eq(*(int *)list_at(list, 0), 1);
+    cr_assert_eq(*(int *)list_at(list, 1), 2);
+    cr_assert_eq(*(int *)list_at(list, 2), 3);
+    cr_assert_eq(*(int *)list_at(list2, 0), 4);
+    list_destroy(list, destroy_int);
+    list_destroy(list2, destroy_int);
+}
+
+Test(list_move, move_negative_index)
+{
+    list_t *list = list_create();
+    list_t *list2 = list_create();
+    int *data = list_add(list, allocate_int);
+    int *data2 = list_add(list, allocate_int);
+    int *data3 = list_add(list, allocate_int);
+    int *data4 = list_add(list, allocate_int);
+
+    cr_assert_not_null(list);
+    cr_assert_not_null(list2);
+    cr_assert_not_null(data);
+    cr_assert_not_null(data2);
+    *data = 1;
+    *data2 = 2;
+    *data3 = 3;
+    *data4 = 4;
+    cr_assert_eq(list_move(list, -2, list2), true);
+    cr_assert_eq(list_size(list), 3);
+    cr_assert_eq(list_size(list2), 1);
+    cr_assert_eq(*(int *)list_at(list, 0), 1);
+    cr_assert_eq(*(int *)list_at(list, 1), 2);
+    cr_assert_eq(*(int *)list_at(list, 2), 4);
+    cr_assert_eq(*(int *)list_at(list2, 0), 3);
+    list_destroy(list, destroy_int);
+    list_destroy(list2, destroy_int);
+}
+
 Test(list_apply, apply_sum_int)
 {
     list_t *list = list_create();
