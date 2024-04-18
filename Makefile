@@ -22,6 +22,7 @@ INST_INC_DIR	=	/usr/local/include
 # Sources
 
 SRC		=	list_add.c 				\
+			list_insert.c 			\
 			list_create.c			\
 			list_destroy.c			\
 			list_handle.c			\
@@ -42,6 +43,7 @@ CFLAGS	+=	-W -Wall -Wextra -Iinclude
 TNAME	=	unit_tests
 
 TSRC	=	list_add_tests.c		\
+			list_insert_tests.c		\
 			list_create_tests.c		\
 			list_destroy_tests.c	\
 			list_handle_tests.c		\

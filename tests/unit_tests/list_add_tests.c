@@ -29,69 +29,44 @@ Test(list_add, add_node_to_list)
     list_destroy(list, destroy_int);
 }
 
-Test(list_insert, insert_node_positive_index)
+Test(list_add, add_ptr_to_list)
 {
     list_t *list = list_create();
-    int *data = list_add(list, allocate_int);
-    int *data2 = list_insert(list, allocate_int, 0);
-    int *data3 = list_insert(list, allocate_int, 4);
-    int *data4 = list_insert(list, allocate_int, 1);
+    int data = 5;
+    int data2 = 10;
+    int *ptr = &data;
+    int *ptr2 = &data2;
+    int *data_ptr = list_add_ptr(list, ptr);
+    int *data2_ptr = list_add_ptr(list, ptr2);
 
     cr_assert_not_null(list);
-    cr_assert_not_null(data);
-    cr_assert_not_null(data2);
-    cr_assert_not_null(data3);
-    cr_assert_not_null(data4);
-    *data = 1;
-    *data2 = 2;
-    *data3 = 3;
-    *data4 = 4;
-    cr_assert_eq(*(int*)(list->head->data), 2);
-    cr_assert_eq(*(int*)(list->head->next->data), 4);
-    cr_assert_eq(*(int*)(list->head->next->next->data), 1);
-    cr_assert_eq(*(int*)(list->head->next->next->next->data), 3);
-    list_destroy(list, destroy_int);
+    cr_assert_not_null(data_ptr);
+    cr_assert_not_null(data2_ptr);
+    cr_assert_eq(list->head->data, data_ptr);
+    cr_assert_eq(list->tail->data, data2_ptr);
+    cr_assert_eq(*(int*)(list->head->data), 5);
+    cr_assert_eq(*(int*)(list->head->next->data), 10);
+    cr_assert_eq(list->head->next, list->tail);
+    cr_assert_eq(list->tail->prev, list->head);
+    list_destroy(list, NULL);
 }
 
-Test(list_insert, insert_node_negative_index)
+Test(list_add, add_copy_to_list)
 {
     list_t *list = list_create();
-    int *data = list_add(list, allocate_int);
-    int *data2 = list_insert(list, allocate_int, -1);
-    int *data3 = list_insert(list, allocate_int, -2);
-    int *data4 = list_insert(list, allocate_int, -10);
+    int data = 5;
+    int data2 = 10;
+    int *data_ptr = list_add_copy(list, &data, sizeof(int));
+    int *data2_ptr = list_add_copy(list, &data2, sizeof(int));
 
     cr_assert_not_null(list);
-    cr_assert_not_null(data);
-    cr_assert_not_null(data2);
-    cr_assert_not_null(data3);
-    cr_assert_not_null(data4);
-    *data = 1;
-    *data2 = 2;
-    *data3 = 3;
-    *data4 = 4;
-    cr_assert_eq(*(int*)(list->head->data), 4);
-    cr_assert_eq(*(int*)(list->head->next->data), 1);
-    cr_assert_eq(*(int*)(list->head->next->next->data), 3);
-    cr_assert_eq(*(int*)(list->head->next->next->next->data), 2);
-    list_destroy(list, destroy_int);
-}
-
-Test(list_insert, insert_node_null_list)
-{
-    int *data = list_insert(NULL, allocate_int, 0);
-
-    cr_assert_null(data);
-}
-
-Test(list_insert, insert_node_null_node)
-{
-    list_t *list = list_create();
-    int *data = list_add(list, allocate_int);
-    int *data2 = list_insert(list, NULL, 0);
-
-    cr_assert_not_null(list);
-    cr_assert_not_null(data);
-    cr_assert_null(data2);
-    list_destroy(list, destroy_int);
+    cr_assert_not_null(data_ptr);
+    cr_assert_not_null(data2_ptr);
+    cr_assert_eq(list->head->data, data_ptr);
+    cr_assert_eq(list->tail->data, data2_ptr);
+    cr_assert_eq(*(int*)(list->head->data), 5);
+    cr_assert_eq(*(int*)(list->head->next->data), 10);
+    cr_assert_eq(list->head->next, list->tail);
+    cr_assert_eq(list->tail->prev, list->head);
+    list_destroy(list, NULL);
 }

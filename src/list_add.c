@@ -4,6 +4,8 @@
 ** File description:
 ** list_add
 */
+
+#include <string.h>
 #include <stdlib.h>
 #include <stddef.h>
 #include "linked.h"
@@ -43,58 +45,15 @@ void *list_add_ptr(list_t *list, void *ptr)
     return node ? node->data : NULL;
 }
 
-static void insert_from_back(node_t *node, node_t *new, int count)
+void *list_add_copy(list_t *list, void *data, size_t size)
 {
-    node_t *next = NULL;
+    void *new = NULL;
 
-    while (count > 0 && node) {
-        next = node;
-        node = node->prev;
-        count--;
-    }
-    if (node)
-        node_link(node, new, next, NULL);
-    else
-        node_link(new, next, NULL);
-}
-
-static void insert_from_front(node_t *node, node_t *new, int count)
-{
-    node_t *prev = NULL;
-
-    while (count > 0 && node) {
-        prev = node;
-        node = node->next;
-        count--;
-    }
-    if (node)
-        node_link(prev, new, node, NULL);
-    else
-        node_link(prev, new, NULL);
-}
-
-static void connect_to_list(list_t *list, node_t *node)
-{
-    if (!node->prev)
-        list_set_head(list, node);
-    if (!node->next)
-        list_set_tail(list, node);
-    node->list = list;
-}
-
-void *list_insert(list_t *list, allocator_t allocate, int index)
-{
-    node_t *node = NULL;
-
-    if (!list)
+    if (!list || !data || !size)
         return NULL;
-    node = node_create(allocate);
-    if (!node)
+    new = malloc(size);
+    if (!new)
         return NULL;
-    if (index < 0)
-        insert_from_back(list->tail, node, abs(index) - 1);
-    else
-        insert_from_front(list->head, node, index);
-    connect_to_list(list, node);
-    return node->data;
+    new = memcpy(new, data, size);
+    return list_add_ptr(list, new);
 }
