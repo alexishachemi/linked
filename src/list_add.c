@@ -8,7 +8,7 @@
 #include <stddef.h>
 #include "linked.h"
 
-void *list_add(list_t *list, allocator_t allocate)
+node_t *list_add_node(list_t *list, allocator_t allocate)
 {
     node_t *node = NULL;
 
@@ -22,7 +22,25 @@ void *list_add(list_t *list, allocator_t allocate)
     if (!list->head)
         list->head = node;
     node->list = list;
-    return node->data;
+    return node;
+}
+
+void *list_add(list_t *list, allocator_t allocate)
+{
+    node_t *node = NULL;
+
+    node = list_add_node(list, allocate);
+    return node ? node->data : NULL;
+}
+
+void *list_add_ptr(list_t *list, void *ptr)
+{
+    node_t *node = NULL;
+
+    node = list_add_node(list, NULL);
+    if (node)
+        node->data = ptr;
+    return node ? node->data : NULL;
 }
 
 static void insert_from_back(node_t *node, node_t *new, int count)

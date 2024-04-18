@@ -47,6 +47,8 @@ void list_destroy_free(list_t *list);
 // adding
 
 void *list_add(list_t *list, allocator_t allocate);
+void *list_add_ptr(list_t *list, void *ptr);
+node_t *list_add_node(list_t *list, allocator_t allocate);
 void *list_iinsert(list_t *list, allocator_t allocate, int index);
 
 // removing
