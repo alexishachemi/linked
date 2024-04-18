@@ -79,6 +79,8 @@ uninstall:
 	sudo rm -f $(INST_INC_DIR)/$(INC)
 	sudo ldconfig
 
+reinstall: uninstall install
+
 clean:
 	rm -rf $(TMPDIR)
 	rm -f $(shell find . -type f -name '*.gc*')
@@ -104,4 +106,4 @@ $(TMPDIR)/%.o:	%.c
 val_tests: unit_tests
 	valgrind $(VFLAGS) ./unit_tests
 
-.PHONY: all install uninstall clean fclean re tests_run val_tests
+.PHONY: all install uninstall reinstall clean fclean re tests_run val_tests
