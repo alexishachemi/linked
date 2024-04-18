@@ -54,7 +54,7 @@ static void pop_from_back(list_t *list, size_t count, void **data)
     }
 }
 
-void *list_ipop(list_t *list, int index)
+void *list_pop(list_t *list, int index)
 {
     int size = 0;
     node_t *node = NULL;
@@ -78,11 +78,11 @@ void *list_ipop(list_t *list, int index)
     return data;
 }
 
-bool list_iremove(list_t *list, callback_t destroy, int index)
+bool list_remove(list_t *list, callback_t destroy, int index)
 {
     node_t *node = NULL;
 
-    node = list_ipop(list, index);
+    node = list_pop(list, index);
     if (node) {
         destroy(node);
         return true;
@@ -90,7 +90,7 @@ bool list_iremove(list_t *list, callback_t destroy, int index)
     return false;
 }
 
-bool list_iremove_free(list_t *list, int index)
+bool list_remove_free(list_t *list, int index)
 {
-    return list_iremove(list, free, index);
+    return list_remove(list, free, index);
 }

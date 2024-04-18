@@ -49,13 +49,13 @@ void list_destroy_free(list_t *list);
 void *list_add(list_t *list, allocator_t allocate);
 void *list_add_ptr(list_t *list, void *ptr);
 node_t *list_add_node(list_t *list, allocator_t allocate);
-void *list_iinsert(list_t *list, allocator_t allocate, int index);
+void *list_insert(list_t *list, allocator_t allocate, int index);
 
 // removing
 
-void *list_ipop(list_t *list, int index);
-bool list_iremove(list_t *list, callback_t destroy, int index);
-bool list_iremove_free(list_t *list, int index);
+void *list_pop(list_t *list, int index);
+bool list_remove(list_t *list, callback_t destroy, int index);
+bool list_remove_free(list_t *list, int index);
 
 // handling
 

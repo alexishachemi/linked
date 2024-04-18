@@ -29,13 +29,13 @@ Test(list_add, add_node_to_list)
     list_destroy(list, destroy_int);
 }
 
-Test(list_iinsert, insert_node_positive_index)
+Test(list_insert, insert_node_positive_index)
 {
     list_t *list = list_create();
     int *data = list_add(list, allocate_int);
-    int *data2 = list_iinsert(list, allocate_int, 0);
-    int *data3 = list_iinsert(list, allocate_int, 4);
-    int *data4 = list_iinsert(list, allocate_int, 1);
+    int *data2 = list_insert(list, allocate_int, 0);
+    int *data3 = list_insert(list, allocate_int, 4);
+    int *data4 = list_insert(list, allocate_int, 1);
 
     cr_assert_not_null(list);
     cr_assert_not_null(data);
@@ -53,13 +53,13 @@ Test(list_iinsert, insert_node_positive_index)
     list_destroy(list, destroy_int);
 }
 
-Test(list_iinsert, insert_node_negative_index)
+Test(list_insert, insert_node_negative_index)
 {
     list_t *list = list_create();
     int *data = list_add(list, allocate_int);
-    int *data2 = list_iinsert(list, allocate_int, -1);
-    int *data3 = list_iinsert(list, allocate_int, -2);
-    int *data4 = list_iinsert(list, allocate_int, -10);
+    int *data2 = list_insert(list, allocate_int, -1);
+    int *data3 = list_insert(list, allocate_int, -2);
+    int *data4 = list_insert(list, allocate_int, -10);
 
     cr_assert_not_null(list);
     cr_assert_not_null(data);
@@ -77,18 +77,18 @@ Test(list_iinsert, insert_node_negative_index)
     list_destroy(list, destroy_int);
 }
 
-Test(list_iinsert, insert_node_null_list)
+Test(list_insert, insert_node_null_list)
 {
-    int *data = list_iinsert(NULL, allocate_int, 0);
+    int *data = list_insert(NULL, allocate_int, 0);
 
     cr_assert_null(data);
 }
 
-Test(list_iinsert, insert_node_null_node)
+Test(list_insert, insert_node_null_node)
 {
     list_t *list = list_create();
     int *data = list_add(list, allocate_int);
-    int *data2 = list_iinsert(list, NULL, 0);
+    int *data2 = list_insert(list, NULL, 0);
 
     cr_assert_not_null(list);
     cr_assert_not_null(data);

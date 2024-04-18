@@ -82,7 +82,7 @@ static void connect_to_list(list_t *list, node_t *node)
     node->list = list;
 }
 
-void *list_iinsert(list_t *list, allocator_t allocate, int index)
+void *list_insert(list_t *list, allocator_t allocate, int index)
 {
     node_t *node = NULL;
 

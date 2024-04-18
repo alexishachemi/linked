@@ -53,7 +53,7 @@ bool list_move(list_t *from, int at, list_t *to)
         return false;
     if (!list_add_ptr(to, data))
         return false;
-    return list_ipop(from, at);
+    return list_pop(from, at);
 }
 
 bool list_apply(list_t *list, applicator_t apply, void *accumulator)
