@@ -7,7 +7,7 @@
 
 #include "linked.h"
 
-void *list_find_if(list_t *list, comparator_t compare, void *right)
+void *list_get_if(list_t *list, comparator_t compare, void *right)
 {
     if (!list || !compare)
         return false;

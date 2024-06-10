@@ -70,7 +70,7 @@ bool list_apply(list_t *list, applicator_t apply, void *accumulator);
 bool list_map(list_t *list, callback_t map);
 bool list_has_ptr(list_t *list, void *ptr);
 
-void *list_find_if(list_t *list, comparator_t compare, void *right);
+void *list_get_if(list_t *list, comparator_t compare, void *right);
 int list_move_if(list_t *from, list_t *to, comparator_t compare, void *right);
 
 // utilities
