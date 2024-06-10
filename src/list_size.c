@@ -1,13 +1,13 @@
 /*
 ** EPITECH PROJECT, 2024
-** myteams
+** linked
 ** File description:
 ** list_size
 */
 
 #include "linked.h"
 
-size_t list_size(list_t *list)
+size_t list_size(const list_t *list)
 {
     size_t size = 0;
 
@@ -19,7 +19,7 @@ size_t list_size(list_t *list)
     return size;
 }
 
-bool list_empty(list_t *list)
+bool list_empty(const list_t *list)
 {
     return !(list && list->head);
 }

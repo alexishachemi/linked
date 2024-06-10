@@ -1,14 +1,14 @@
 /*
 ** EPITECH PROJECT, 2024
-** liblinked
+** linked
 ** File description:
 ** list
 */
 
-#ifndef LIST_H_
-    #define LIST_H_
-    #include <stdbool.h>
-    #include <unistd.h>
+#pragma once
+
+#include <stdbool.h>
+#include <unistd.h>
 
 typedef struct list_s list_t;
 typedef struct node_s node_t;
@@ -28,6 +28,7 @@ struct node_s {
 typedef void *(*allocator_t)();
 typedef void (*callback_t)(void *);
 typedef void (*applicator_t)(void *, void *);
+typedef bool (*comparator_t)(void *, void *);
 
 // creating
 
@@ -57,6 +58,9 @@ void *list_insert(list_t *list, allocator_t allocate, int index);
 void *list_pop(list_t *list, int index);
 bool list_remove(list_t *list, callback_t destroy, int index);
 bool list_remove_free(list_t *list, int index);
+int list_remove_if(list_t *list, comparator_t compare, void *right,
+    callback_t destroy);
+int list_remove_if_free(list_t *list, comparator_t compare, void *right);
 
 // handling
 
@@ -64,16 +68,19 @@ void *list_at(list_t *list, int index);
 bool list_move(list_t *from, int at, list_t *to);
 bool list_apply(list_t *list, applicator_t apply, void *accumulator);
 bool list_map(list_t *list, callback_t map);
+bool list_has_ptr(list_t *list, void *ptr);
+
+void *list_find_if(list_t *list, comparator_t compare, void *right);
+int list_move_if(list_t *from, list_t *to, comparator_t compare, void *right);
+
 // utilities
 
 void node_isolate(node_t *node);
 void list_print(list_t *list, callback_t print);
 void node_link(node_t *node, ...);
 
-size_t list_size(list_t *list);
-bool list_empty(list_t *list);
+size_t list_size(const list_t *list);
+bool list_empty(const list_t *list);
 
 void list_set_head(list_t *list, node_t *node);
 void list_set_tail(list_t *list, node_t *node);
-
-#endif /* !LIST_H_ */

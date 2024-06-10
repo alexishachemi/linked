@@ -31,6 +31,7 @@ SRC		=	list_add.c 				\
 			list_remove.c			\
 			list_size.c				\
 			list_utils.c			\
+			list_handle_if.c		\
 
 SRC		:=	$(addprefix src/,$(SRC))
 

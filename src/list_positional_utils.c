@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2024
-** liblinked
+** linked
 ** File description:
 ** list_positional_utils
 */

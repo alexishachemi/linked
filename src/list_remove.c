@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2024
-** myteams
+** linked
 ** File description:
 ** list_remove
 */
@@ -83,7 +83,7 @@ bool list_remove(list_t *list, callback_t destroy, int index)
     node_t *node = NULL;
 
     node = list_pop(list, index);
-    if (node) {
+    if (node && destroy) {
         destroy(node);
         return true;
     }
@@ -93,4 +93,26 @@ bool list_remove(list_t *list, callback_t destroy, int index)
 bool list_remove_free(list_t *list, int index)
 {
     return list_remove(list, free, index);
+}
+
+int list_remove_if(list_t *list, comparator_t compare, void *right,
+    callback_t destroy)
+{
+    int removed = 0;
+
+    if (!list || !compare || !destroy || !right)
+        return -1;
+    for (size_t i = 0; i < list_size(list); i++) {
+        if (compare(list_at(list, i), right)) {
+            list_remove(list, destroy, i);
+            i--;
+            removed++;
+        }
+    }
+    return removed;
+}
+
+int list_remove_if_free(list_t *list, comparator_t compare, void *right)
+{
+    return list_remove_if(list, compare, right, free);
 }

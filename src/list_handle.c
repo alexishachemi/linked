@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2024
-** myteams
+** linked
 ** File description:
 ** list_handle
 */
@@ -60,8 +60,8 @@ bool list_apply(list_t *list, applicator_t apply, void *accumulator)
 {
     if (!list || !apply || !accumulator)
         return false;
-    for (node_t *i = list->head; i; i = i->next) {
-        apply(accumulator, i->data);
+    for (size_t i = 0; i < list_size(list); i++) {
+        apply(accumulator, list_at(list, i));
     }
     return true;
 }
@@ -74,4 +74,15 @@ bool list_map(list_t *list, callback_t map)
         map(i->data);
     }
     return true;
+}
+
+bool list_has_ptr(list_t *list, void *ptr)
+{
+    if (!list || !ptr)
+        return false;
+    for (node_t *i = list->head; i; i = i->next) {
+        if (i->data == ptr)
+            return true;
+    }
+    return false;
 }

@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2024
-** myteams [WSL: Ubuntu]
+** linked
 ** File description:
 ** list_node_utils
 */
