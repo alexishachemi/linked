@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2024
-** myteams
+** linked
 ** File description:
 ** list_size_tests
 */

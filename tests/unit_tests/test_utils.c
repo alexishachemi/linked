@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2024
-** liblinked
+** linked
 ** File description:
 ** test_utils
 */
@@ -42,13 +42,6 @@ void inc_int(void *data)
     if (!data)
         return;
     (*(int*)data)++;
-}
-
-bool int_eq(void *data, void *data2)
-{
-    if (!data || !data2)
-        return false;
-    return *(int*)data == *(int*)data2;
 }
 
 bool int_gt(void *data, void *data2)

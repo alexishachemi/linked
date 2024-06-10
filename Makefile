@@ -21,17 +21,22 @@ INST_INC_DIR	=	/usr/local/include
 
 # Sources
 
-SRC		=	list_add.c 				\
-			list_insert.c 			\
-			list_create.c			\
-			list_destroy.c			\
-			list_handle.c			\
-			list_node_utils.c		\
-			list_positional_utils.c	\
-			list_remove.c			\
-			list_size.c				\
-			list_utils.c			\
-			list_handle_if.c		\
+SRC		=	list_add.c 						\
+			list_insert.c 					\
+			list_create.c					\
+			list_destroy.c					\
+			list_handle.c					\
+			list_node_utils.c				\
+			list_positional_utils.c			\
+			list_remove.c					\
+			list_size.c						\
+			list_utils.c					\
+			list_handle_if.c				\
+			comparators/list_int_comp.c		\
+			comparators/list_float_comp.c	\
+			comparators/list_double_comp.c	\
+			comparators/list_char_comp.c	\
+			comparators/list_str_comp.c		\
 
 SRC		:=	$(addprefix src/,$(SRC))
 
@@ -43,15 +48,20 @@ CFLAGS	+=	-W -Wall -Wextra -Iinclude
 
 TNAME	=	unit_tests
 
-TSRC	=	list_add_tests.c		\
-			list_insert_tests.c		\
-			list_create_tests.c		\
-			list_destroy_tests.c	\
-			list_handle_tests.c		\
-			list_remove_tests.c		\
-			list_size_tests.c		\
-			list_utils_tests.c		\
-			test_utils.c			\
+TSRC	=	list_add_tests.c					\
+			list_insert_tests.c					\
+			list_create_tests.c					\
+			list_destroy_tests.c				\
+			list_handle_tests.c					\
+			list_remove_tests.c					\
+			list_size_tests.c					\
+			list_utils_tests.c					\
+			test_utils.c						\
+			comparators/list_int_comp_tests.c	\
+			comparators/list_float_comp_tests.c	\
+			comparators/list_double_comp_tests.c\
+			comparators/list_char_comp_tests.c	\
+			comparators/list_str_comp_tests.c	\
 
 TSRC	:=	$(addprefix tests/unit_tests/,$(TSRC))
 

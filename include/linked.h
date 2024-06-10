@@ -84,3 +84,23 @@ bool list_empty(const list_t *list);
 
 void list_set_head(list_t *list, node_t *node);
 void list_set_tail(list_t *list, node_t *node);
+
+// Comparators
+
+bool list_int_eq(void *a, void *b);
+bool list_int_gt(void *a, void *b);
+bool list_int_lt(void *a, void *b);
+
+bool list_float_eq(void *a, void *b);
+bool list_float_gt(void *a, void *b);
+bool list_float_lt(void *a, void *b);
+
+bool list_double_eq(void *a, void *b);
+bool list_double_gt(void *a, void *b);
+bool list_double_lt(void *a, void *b);
+
+bool list_char_eq(void *a, void *b);
+bool list_char_gt(void *a, void *b);
+bool list_char_lt(void *a, void *b);
+
+bool list_str_eq(void *a, void *b);

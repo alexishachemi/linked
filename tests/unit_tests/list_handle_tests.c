@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2024
-** myteams
+** linked
 ** File description:
 ** list_handle_tests
 */
@@ -284,4 +284,58 @@ Test(list_map, map_empty_list)
 Test(list_map, map_null_list)
 {
     list_map(NULL, inc_int);
+}
+
+Test(list_has_ptr, has_ptr)
+{
+    list_t *list = list_create();
+    int *data = list_add(list, allocate_int);
+    int *data2 = list_add(list, allocate_int);
+    int *data3 = list_add(list, allocate_int);
+
+    cr_assert_not_null(list);
+    cr_assert_not_null(data);
+    cr_assert_not_null(data2);
+    cr_assert_eq(list_has_ptr(list, data), true);
+    cr_assert_eq(list_has_ptr(list, data2), true);
+    cr_assert_eq(list_has_ptr(list, data3), true);
+    list_destroy(list, destroy_int);
+}
+
+Test(list_has_ptr, has_ptr_empty_list)
+{
+    list_t *list = list_create();
+    int *data = malloc(sizeof(int));
+
+    cr_assert_not_null(list);
+    cr_assert_not_null(data);
+    cr_assert_eq(list_has_ptr(list, data), false);
+    free(data);
+    list_destroy_free(list);
+}
+
+Test(list_has_ptr, has_ptr_null_list)
+{
+    int *data = malloc(sizeof(int));
+
+    cr_assert_eq(list_has_ptr(NULL, data), false);
+    free(data);
+}
+
+Test(list_has_ptr, does_not_have_ptr)
+{
+    list_t *list = list_create();
+    int *data = list_add(list, allocate_int);
+    int *data2 = list_add(list, allocate_int);
+    int *data3 = list_add(list, allocate_int);
+    int *data4 = malloc(sizeof(int));
+
+    cr_assert_not_null(list);
+    cr_assert_not_null(data);
+    cr_assert_not_null(data2);
+    cr_assert_not_null(data3);
+    cr_assert_not_null(data4);
+    cr_assert_eq(list_has_ptr(list, data4), false);
+    free(data4);
+    list_destroy(list, destroy_int);
 }
