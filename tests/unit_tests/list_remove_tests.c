@@ -27,11 +27,11 @@ Test(list_remove, remove_index_in_range)
     *data2 = 2;
     *data3 = 3;
     *data4 = 4;
-    cr_assert_eq(list_size(list), 4);
+    cr_assert_eq(list->size, 4);
     data_removed = list_pop(list, 2);
     cr_assert_not_null(data_removed);
     cr_assert_eq(data_removed, data3);
-    cr_assert_eq(list_size(list), 3);
+    cr_assert_eq(list->size, 3);
     cr_assert_eq(list->head->data, data);
     cr_assert_eq(list->head->next->data, data2);
     cr_assert_eq(list->head->next->next->data, data4);
@@ -58,9 +58,9 @@ Test(list_remove, remove_index_out_of_range)
     *data2 = 2;
     *data3 = 3;
     *data4 = 4;
-    cr_assert_eq(list_size(list), 4);
+    cr_assert_eq(list->size, 4);
     data_removed = list_pop(list, 12);
-    cr_assert_eq(list_size(list), 3);
+    cr_assert_eq(list->size, 3);
     cr_assert_eq(data_removed, data4);
     cr_assert_eq(list->head->data, data);
     cr_assert_eq(list->head->next->data, data2);
@@ -88,9 +88,9 @@ Test(list_remove, remove_index_zero)
     *data2 = 2;
     *data3 = 3;
     *data4 = 4;
-    cr_assert_eq(list_size(list), 4);
+    cr_assert_eq(list->size, 4);
     data_removed = list_pop(list, 0);
-    cr_assert_eq(list_size(list), 3);
+    cr_assert_eq(list->size, 3);
     cr_assert_eq(data_removed, data);
     cr_assert_eq(list->head->data, data2);
     cr_assert_eq(list->head->next->data, data3);
@@ -118,9 +118,9 @@ Test(list_remove, remove_index_last)
     *data2 = 2;
     *data3 = 3;
     *data4 = 4;
-    cr_assert_eq(list_size(list), 4);
+    cr_assert_eq(list->size, 4);
     data_removed = list_pop(list, 3);
-    cr_assert_eq(list_size(list), 3);
+    cr_assert_eq(list->size, 3);
     cr_assert_eq(data_removed, data4);
     cr_assert_eq(list->head->data, data);
     cr_assert_eq(list->head->next->data, data2);
@@ -148,9 +148,9 @@ Test(list_remove, remove_index_negative)
     *data2 = 2;
     *data3 = 3;
     *data4 = 4;
-    cr_assert_eq(list_size(list), 4);
+    cr_assert_eq(list->size, 4);
     data_removed = list_pop(list, -3);
-    cr_assert_eq(list_size(list), 3);
+    cr_assert_eq(list->size, 3);
     cr_assert_not_null(data_removed);
     cr_assert_eq(data_removed, data2);
     cr_assert_eq(list->head->data, data);
@@ -195,7 +195,7 @@ Test(list_remove_if, remove_if_no_match)
     *data = 1;
     *data2 = 2;
     cr_assert_eq(list_remove_if(list, int_gt, &right, destroy_int), 0);
-    cr_assert_eq(list_size(list), 2);
+    cr_assert_eq(list->size, 2);
     list_destroy(list, destroy_int);
 }
 
@@ -209,7 +209,7 @@ Test(list_remove_if, remove_if_one_match)
     *data = 1;
     *data2 = 2;
     cr_assert_eq(list_remove_if(list, int_gt, &right, destroy_int), 1);
-    cr_assert_eq(list_size(list), 1);
+    cr_assert_eq(list->size, 1);
     list_destroy(list, destroy_int);
 }
 
@@ -227,6 +227,6 @@ Test(list_remove_if, remove_if_multiple_match)
     *data3 = 1;
     *data4 = 4;
     cr_assert_eq(list_remove_if(list, int_gt, &right, destroy_int), 2);
-    cr_assert_eq(list_size(list), 2);
+    cr_assert_eq(list->size, 2);
     list_destroy(list, destroy_int);
 }

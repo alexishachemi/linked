@@ -55,7 +55,7 @@ Test(node_destroy_all, node_destroy_all_null)
 
 Test(list_clear, list_clear_no_destroy)
 {
-    list_t list = {NULL, NULL};
+    list_t list = {0};
     node_t *node = node_create(NULL);
 
     list.head = node;
@@ -67,7 +67,7 @@ Test(list_clear, list_clear_no_destroy)
 
 Test(list_clear, list_clear_with_destroy)
 {
-    list_t list = {NULL, NULL};
+    list_t list = {0};
     node_t *node = node_create(allocate_int);
 
     list.head = node;

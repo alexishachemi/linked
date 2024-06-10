@@ -115,7 +115,7 @@ Test(list_move_if, move_if_no_match)
     *data = 1;
     *data2 = 2;
     cr_assert_eq(list_move_if(list, list2, int_gt, data2), 0);
-    cr_assert_eq(list_size(list), 2);
+    cr_assert_eq(list->size, 2);
     cr_assert_eq(list_size(list2), 0);
     list_destroy(list, destroy_int);
     list_destroy(list2, NULL);
@@ -131,7 +131,7 @@ Test(list_move_if, move_if_match)
     *data = 1;
     *data2 = 2;
     cr_assert_eq(list_move_if(list, list2, int_gt, data), 1);
-    cr_assert_eq(list_size(list), 1);
+    cr_assert_eq(list->size, 1);
     cr_assert_eq(list_size(list2), 1);
     cr_assert_eq(list_at(list2, 0), data2);
     list_destroy(list, NULL);

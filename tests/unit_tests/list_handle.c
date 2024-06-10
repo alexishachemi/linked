@@ -32,7 +32,7 @@ static void *get_from_back(node_t *node, size_t count)
 
 void *list_at(list_t *list, int index)
 {
-    if (list_empty(list))
+    if (list->size == 0)
         return NULL;
     if (index < 0)
         return get_from_back(list->tail, abs(index) - 1);

@@ -24,6 +24,8 @@ void node_isolate(node_t *node)
         if (node->list->tail == node)
             node->list->tail = node->prev ? node->prev : node->next;
     }
+    if (node->list)
+        list_dec_size(node->list);
     node->list = NULL;
     node->prev = NULL;
     node->next = NULL;

@@ -9,17 +9,26 @@
 
 size_t list_size(const list_t *list)
 {
-    size_t size = 0;
-
-    if (!list || !list->head)
+    if (!list)
         return 0;
-    for (node_t *node = list->head; node; node = node->next) {
-        size++;
-    }
-    return size;
+    return list->size;
 }
 
 bool list_empty(const list_t *list)
 {
     return !(list && list->head);
+}
+
+void list_inc_size(list_t *list)
+{
+    if (!list)
+        return;
+    list->size++;
+}
+
+void list_dec_size(list_t *list)
+{
+    if (!list || list->size == 0)
+        return;
+    list->size--;
 }

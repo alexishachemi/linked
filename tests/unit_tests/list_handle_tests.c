@@ -144,8 +144,8 @@ Test(list_move, move_index_in_range)
     *data3 = 3;
     *data4 = 4;
     cr_assert_eq(list_move(list, 2, list2), true);
-    cr_assert_eq(list_size(list), 3);
-    cr_assert_eq(list_size(list2), 1);
+    cr_assert_eq(list->size, 3);
+    cr_assert_eq(list2->size, 1);
     cr_assert_eq(*(int *)list_at(list, 0), 1);
     cr_assert_eq(*(int *)list_at(list, 1), 2);
     cr_assert_eq(*(int *)list_at(list, 2), 4);
@@ -172,8 +172,8 @@ Test(list_move, move_index_out_of_range)
     *data3 = 3;
     *data4 = 4;
     cr_assert_eq(list_move(list, 12, list2), true);
-    cr_assert_eq(list_size(list), 3);
-    cr_assert_eq(list_size(list2), 1);
+    cr_assert_eq(list->size, 3);
+    cr_assert_eq(list2->size, 1);
     cr_assert_eq(*(int *)list_at(list, 0), 1);
     cr_assert_eq(*(int *)list_at(list, 1), 2);
     cr_assert_eq(*(int *)list_at(list, 2), 3);
@@ -200,8 +200,8 @@ Test(list_move, move_negative_index)
     *data3 = 3;
     *data4 = 4;
     cr_assert_eq(list_move(list, -2, list2), true);
-    cr_assert_eq(list_size(list), 3);
-    cr_assert_eq(list_size(list2), 1);
+    cr_assert_eq(list->size, 3);
+    cr_assert_eq(list2->size, 1);
     cr_assert_eq(*(int *)list_at(list, 0), 1);
     cr_assert_eq(*(int *)list_at(list, 1), 2);
     cr_assert_eq(*(int *)list_at(list, 2), 4);

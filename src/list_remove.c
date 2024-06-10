@@ -56,14 +56,12 @@ static void pop_from_back(list_t *list, size_t count, void **data)
 
 void *list_pop(list_t *list, int index)
 {
-    int size = 0;
     node_t *node = NULL;
     void *data = NULL;
 
-    size = list_size(list);
-    if (size == 0)
+    if (list_empty(list))
         return NULL;
-    if (size == 1) {
+    if (list->size == 1) {
         node = list->head;
         data = node->data;
         list->head = NULL;
@@ -74,7 +72,8 @@ void *list_pop(list_t *list, int index)
     if (index < 0)
         pop_from_back(list, abs(index) - 1, &data);
     else
-        pop_from_front(list, index >= size ? size - 1 : index, &data);
+        pop_from_front(list, (size_t)index >= list->size
+            ? list->size - 1 : (size_t)index, &data);
     return data;
 }
 
@@ -102,7 +101,7 @@ int list_remove_if(list_t *list, comparator_t compare, void *right,
 
     if (!list || !compare || !destroy || !right)
         return -1;
-    for (size_t i = 0; i < list_size(list); i++) {
+    for (size_t i = 0; i < list->size; i++) {
         if (compare(list_at(list, i), right)) {
             list_remove(list, destroy, i);
             i--;

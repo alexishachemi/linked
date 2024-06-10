@@ -12,7 +12,7 @@
 Test(list_size, empty_list)
 {
     list_t *list = list_create();
-    size_t size = list_size(list);
+    size_t size = list->size;
 
     cr_assert_eq(size, 0);
     list_destroy(list, NULL);
@@ -22,7 +22,7 @@ Test(list_size, one_element)
 {
     list_t *list = list_create();
     list_add(list, allocate_int);
-    size_t size = list_size(list);
+    size_t size = list->size;
 
     cr_assert_eq(size, 1);
     list_destroy(list, destroy_int);
@@ -35,7 +35,7 @@ Test(list_size, multiple_elements)
     list_add(list, allocate_int);
     list_add(list, allocate_int);
     list_add(list, allocate_int);
-    size_t size = list_size(list);
+    size_t size = list->size;
 
     cr_assert_eq(size, 4);
     list_destroy(list, destroy_int);

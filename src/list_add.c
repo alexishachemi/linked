@@ -24,6 +24,7 @@ node_t *list_add_node(list_t *list, allocator_t allocate)
     if (!list->head)
         list->head = node;
     node->list = list;
+    list_inc_size(list);
     return node;
 }
 
