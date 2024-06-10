@@ -43,17 +43,3 @@ void inc_int(void *data)
         return;
     (*(int*)data)++;
 }
-
-bool int_gt(void *data, void *data2)
-{
-    if (!data || !data2)
-        return false;
-    return *(int*)data > *(int*)data2;
-}
-
-bool int_lt(void *data, void *data2)
-{
-    if (!data || !data2)
-        return false;
-    return *(int*)data < *(int*)data2;
-}

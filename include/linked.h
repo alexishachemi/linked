@@ -74,6 +74,11 @@ bool list_has_ptr(list_t *list, void *ptr);
 void *list_get_if(list_t *list, comparator_t compare, void *right);
 int list_move_if(list_t *from, list_t *to, comparator_t compare, void *right);
 
+// find
+
+int list_find(list_t *list, comparator_t compare, void *right);
+int list_find_ptr(list_t *list, void *ptr);
+
 // utilities
 
 void list_print(list_t *list, callback_t print);

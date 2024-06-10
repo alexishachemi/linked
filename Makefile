@@ -37,6 +37,7 @@ SRC		=	list_add.c 						\
 			comparators/list_double_comp.c	\
 			comparators/list_char_comp.c	\
 			comparators/list_str_comp.c		\
+			list_find.c						\
 
 SRC		:=	$(addprefix src/,$(SRC))
 
@@ -62,6 +63,7 @@ TSRC	=	list_add_tests.c					\
 			comparators/list_double_comp_tests.c\
 			comparators/list_char_comp_tests.c	\
 			comparators/list_str_comp_tests.c	\
+			list_find_tests.c					\
 
 TSRC	:=	$(addprefix tests/unit_tests/,$(TSRC))
 

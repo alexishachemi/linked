@@ -165,7 +165,7 @@ Test(list_remove_if, remove_if_null_list)
 {
     int right = 1;
 
-    cr_assert_eq(list_remove_if(NULL, int_gt, &right, destroy_int), -1);
+    cr_assert_eq(list_remove_if(NULL, list_int_gt, &right, destroy_int), -1);
 }
 
 Test(list_remove_if, remove_if_null_compare)
@@ -181,7 +181,7 @@ Test(list_remove_if, remove_if_null_right)
 {
     list_t *list = list_create();
 
-    cr_assert_eq(list_remove_if(list, int_gt, NULL, destroy_int), -1);
+    cr_assert_eq(list_remove_if(list, list_int_gt, NULL, destroy_int), -1);
     list_destroy(list, destroy_int);
 }
 
@@ -194,7 +194,7 @@ Test(list_remove_if, remove_if_no_match)
 
     *data = 1;
     *data2 = 2;
-    cr_assert_eq(list_remove_if(list, int_gt, &right, destroy_int), 0);
+    cr_assert_eq(list_remove_if(list, list_int_gt, &right, destroy_int), 0);
     cr_assert_eq(list->size, 2);
     list_destroy(list, destroy_int);
 }
@@ -208,7 +208,7 @@ Test(list_remove_if, remove_if_one_match)
 
     *data = 1;
     *data2 = 2;
-    cr_assert_eq(list_remove_if(list, int_gt, &right, destroy_int), 1);
+    cr_assert_eq(list_remove_if(list, list_int_gt, &right, destroy_int), 1);
     cr_assert_eq(list->size, 1);
     list_destroy(list, destroy_int);
 }
@@ -226,7 +226,7 @@ Test(list_remove_if, remove_if_multiple_match)
     *data2 = 2;
     *data3 = 1;
     *data4 = 4;
-    cr_assert_eq(list_remove_if(list, int_gt, &right, destroy_int), 2);
+    cr_assert_eq(list_remove_if(list, list_int_gt, &right, destroy_int), 2);
     cr_assert_eq(list->size, 2);
     list_destroy(list, destroy_int);
 }
