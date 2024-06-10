@@ -41,13 +41,6 @@ Test(list_size, multiple_elements)
     list_destroy(list, destroy_int);
 }
 
-Test(list_size, null_list)
-{
-    size_t size = list_size(NULL);
-
-    cr_assert_eq(size, 0);
-}
-
 Test(list_empty, empty_list)
 {
     list_t *list = list_create();

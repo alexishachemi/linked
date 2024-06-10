@@ -24,7 +24,7 @@ int list_move_if(list_t *from, list_t *to, comparator_t compare, void *right)
 
     if (!from || !to || !compare || !right)
         return -1;
-    for (size_t i = 0; i < list_size(from); i++) {
+    for (size_t i = 0; i < from->size; i++) {
         if (compare(list_at(from, i), right)) {
             list_move(from, i, to);
             i--;

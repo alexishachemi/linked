@@ -82,7 +82,6 @@ int list_find_ptr(list_t *list, void *ptr);
 // utilities
 
 void list_print(list_t *list, callback_t print);
-size_t list_size(const list_t *list);
 bool list_empty(const list_t *list);
 
 // Comparators
