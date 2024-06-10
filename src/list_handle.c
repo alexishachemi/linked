@@ -34,6 +34,8 @@ void *list_at(list_t *list, int index)
 {
     if (list_empty(list))
         return NULL;
+    if (index >= 0 && (size_t)index > list->size / 2)
+        index = (list->size - index) * -1;
     if (index < 0)
         return get_from_back(list->tail, abs(index) - 1);
     return get_from_front(list->head,
