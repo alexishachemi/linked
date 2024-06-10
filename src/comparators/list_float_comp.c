@@ -5,7 +5,7 @@
 ** list_float_comp
 */
 
-#include "linked.h"
+#include "linked_dev.h"
 
 bool list_float_eq(void *a, void *b)
 {

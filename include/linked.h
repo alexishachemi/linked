@@ -16,6 +16,7 @@ typedef struct node_s node_t;
 struct list_s {
     node_t *head;
     node_t *tail;
+    size_t size; // Do not modify directly
 };
 
 struct node_s {
@@ -75,15 +76,9 @@ int list_move_if(list_t *from, list_t *to, comparator_t compare, void *right);
 
 // utilities
 
-void node_isolate(node_t *node);
 void list_print(list_t *list, callback_t print);
-void node_link(node_t *node, ...);
-
 size_t list_size(const list_t *list);
 bool list_empty(const list_t *list);
-
-void list_set_head(list_t *list, node_t *node);
-void list_set_tail(list_t *list, node_t *node);
 
 // Comparators
 

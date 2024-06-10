@@ -6,7 +6,7 @@
 */
 
 #include <stdlib.h>
-#include "linked.h"
+#include "linked_dev.h"
 
 static void insert_from_back(node_t *node, node_t *new, int count)
 {

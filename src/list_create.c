@@ -6,7 +6,7 @@
 */
 
 #include <stdlib.h>
-#include "linked.h"
+#include "linked_dev.h"
 
 node_t *node_create(allocator_t allocate)
 {
@@ -41,4 +41,5 @@ void list_init(list_t *list)
         return;
     list->head = NULL;
     list->tail = NULL;
+    list->size = 0;
 }

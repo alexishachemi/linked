@@ -8,7 +8,7 @@
 #include <stdio.h>
 #include <stdarg.h>
 #include <stddef.h>
-#include "linked.h"
+#include "linked_dev.h"
 
 void node_isolate(node_t *node)
 {

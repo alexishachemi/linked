@@ -5,7 +5,7 @@
 ** list_char_comp
 */
 
-#include "linked.h"
+#include "linked_dev.h"
 
 bool list_char_eq(void *a, void *b)
 {

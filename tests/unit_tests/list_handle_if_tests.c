@@ -6,7 +6,7 @@
 */
 
 #include <criterion/criterion.h>
-#include "linked.h"
+#include "linked_dev.h"
 #include "test_utils.h"
 
 Test(list_get_if, find_if_null_list)

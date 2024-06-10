@@ -6,7 +6,7 @@
 */
 
 #include <string.h>
-#include "linked.h"
+#include "linked_dev.h"
 
 bool list_str_eq(void *a, void *b)
 {

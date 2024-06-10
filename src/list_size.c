@@ -5,7 +5,7 @@
 ** list_size
 */
 
-#include "linked.h"
+#include "linked_dev.h"
 
 size_t list_size(const list_t *list)
 {

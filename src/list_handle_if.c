@@ -5,7 +5,7 @@
 ** conditional handling functions
 */
 
-#include "linked.h"
+#include "linked_dev.h"
 
 void *list_get_if(list_t *list, comparator_t compare, void *right)
 {

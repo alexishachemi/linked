@@ -6,7 +6,7 @@
 */
 
 #include <criterion/criterion.h>
-#include "linked.h"
+#include "linked_dev.h"
 
 Test(list_char_eq, test_list_char_eq)
 {
