@@ -99,7 +99,7 @@ int list_remove_if(list_t *list, comparator_t compare, void *right,
 {
     int removed = 0;
 
-    if (!list || !compare || !destroy || !right)
+    if (!list || !compare)
         return -1;
     for (size_t i = 0; i < list->size; i++) {
         if (compare(list_at(list, i), right)) {

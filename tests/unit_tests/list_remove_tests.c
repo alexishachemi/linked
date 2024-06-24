@@ -181,7 +181,7 @@ Test(list_remove_if, remove_if_null_right)
 {
     list_t *list = list_create();
 
-    cr_assert_eq(list_remove_if(list, list_int_gt, NULL, destroy_int), -1);
+    cr_assert_eq(list_remove_if(list, list_int_gt, NULL, destroy_int), 0);
     list_destroy(list, destroy_int);
 }
 
